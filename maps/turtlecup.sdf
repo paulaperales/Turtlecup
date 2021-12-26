@@ -1322,7 +1322,7 @@
       </model>
       <model name='RoboCup SPL Ball'>
         <pose>1.19211 0.022459 0.0425 0 -0 0</pose>
-        <scale>2.5 2.5 2.5</scale>
+        <scale>5 5 5</scale>
         <link name='ball'>
           <pose>1.19211 0.022459 0.0425 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>

@@ -19,13 +19,13 @@
         </include>
       </group>
 
-      <!-- BEGIN ROBOT 2 -->
+      <!-- BEGIN ROBOT 2
       <group ns="player2">
         <param name="tf_prefix" value="player2_tf" />
         <include file="$(find turtlecup)/launch/one_turtlebot.launch" >
           <arg name="init_pose" value="-x -1 -y 0 -z 0" />
           <arg name="robot_name"  value="player2" />
         </include>
-      </group>
+      </group> -->
 
     </launch>
