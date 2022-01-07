@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # nodo suscriptor de la camara
 import cv2
 import rospy
@@ -19,16 +20,14 @@ def callback(img):
     blue_upper = np.array([75, 50, 15], np.uint8) 
     mask = cv2.inRange(cv_img, blue_lower, blue_upper)
 
-    # -------- EN BGR --------- 
-    # yellow_lower = np.array([20,95,95],np.uint8)
-    # yellow_upper = np.array([32,141,145],np.uint8)
-    # mask = cv2.inRange(cv_img, yellow_lower, yellow_upper)
+    m = cv2.moments(mask)
+    if m['m00'] != 0:
+        x = m['m10']/m['m00']
+        y = m['m01']/m['m00']
+    
+        cv2.circle(cv_img, (int(x),int(y)), 5, 255, 5)
 
-
-
-
-    cv2.imshow("Image window", cv_img)
-    cv2.imshow("Pelota", mask)
+    cv2.imshow("Peorteria azul", cv_img)
     cv2.waitKey(3)
 
 
