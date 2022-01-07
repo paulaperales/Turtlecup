@@ -1,0 +1,5 @@
+<launch>
+  <node name="pelota" pkg="turtlebot_gazebo" type="deteccion_pelota.py"/>
+  <node name="porteria_azul" pkg="turtlebot_gazebo" type="porteria_azul.py"/>
+  <node name="porteria_amarilla" pkg="turtlebot_gazebo" type="porteria_amarilla.py"/>
+</launch>
