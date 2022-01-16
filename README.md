@@ -38,10 +38,6 @@ git clone https://github.com/camacar36/Turtlecup
 ```
 cd $HOME/tb2_ws/src/turtlebot2/turtlebot_simulator/turtlebot_gazebo/Turtlecup/scripts
 
-chmod +x deteccion_gol.py sm_var_and_gk.py sm_player.py
+chmod +x deteccion_gol.py sm_goalkeeper.py sm_player.py
 ```
-
-
- 
-chmod
 
