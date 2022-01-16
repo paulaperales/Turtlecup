@@ -41,3 +41,12 @@ cd $HOME/tb2_ws/src/turtlebot2/turtlebot_simulator/turtlebot_gazebo/Turtlecup/sc
 chmod +x deteccion_gol.py sm_goalkeeper.py sm_player.py
 ```
 
+# Execution
+
+1. If you didn't execute `echo "source $HOME/tb2_ws/devel_isolated/setup.bash" >> ~/.bashrc` during the installation, execute the next command before every next step:
+```
+source $HOME/tb2_ws/devel_isolated/setup.bash
+```
+2. In the same command window execute `roslaunch turtlebot_gazebo turtlecup.launch`.
+3. Open a new command window and execute `roslaunch turtlebot_gazebo navigation.launch`
+4. Open a new command window and execute `roslaunch turtlebot_gazebo `
