@@ -7,7 +7,7 @@ The idea of this project was to simulate a kind of RoboCup using Turtlebots2. Ho
 # Instalation 
 1. Install ROS Noetic from the [Official Webpage](http://wiki.ros.org/noetic/Installation/Ubuntu).
 2. Install Turtlebot 2 simulator for Noetic:
-   - Copy this [tb2.rosinstall](tb2.rosinstall) file in your _/home/user_ directory.
+   - Copy this [tb2.rosinstall](tb2.rosinstall) file in your _/home/<user>_ directory.
    - Open a command window and execute:
       ```
       sudo apt install libusb-dev libftdi-dev python-is-python3 pyqt5-dev-tools
