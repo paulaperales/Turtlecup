@@ -28,3 +28,5 @@ The idea of this project was to simulate a kind of RoboCup using Turtlebots2. Ho
       ```
       echo "source $HOME/tb2_ws/devel_isolated/setup.bash" >> ~/.bashrc
       ```
+chmod
+
