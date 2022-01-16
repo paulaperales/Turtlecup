@@ -1,0 +1,4 @@
+<launch>
+  <arg name="GK_name" default="GK_BLUE"/>
+  <node name="$(arg GK_name)_node" pkg="turtlebot_gazebo" type="sm_goalkeeper.py" args="-GK_name $(arg GK_name)" output="screen"/>
+</launch>

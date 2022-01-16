@@ -1,0 +1,4 @@
+<launch>
+  <arg name="VAR_name" default="VAR_BLUE"/>
+  <node name="$(arg VAR_name)_camera" pkg="turtlebot_gazebo" type="deteccion_gol.py" args="-VAR_name $(arg VAR_name)"/>
+</launch>

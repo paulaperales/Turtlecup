@@ -1,0 +1,18 @@
+<launch>
+  <include file="$(find turtlebot_gazebo)/launch/var.launch">
+    <arg name="VAR_name" value="VAR_BLUE"/>
+  </include>
+
+  <include file="$(find turtlebot_gazebo)/launch/var.launch">
+    <arg name="VAR_name" value="VAR_YELLOW"/>
+  </include>
+  
+  <include file="$(find turtlebot_gazebo)/launch/goalkeeper.launch">
+    <arg name="GK_name" value="GK_BLUE"/>
+  </include>
+
+  <include file="$(find turtlebot_gazebo)/launch/goalkeeper.launch">
+    <arg name="GK_name" value="GK_YELLOW"/>
+  </include>
+
+</launch>

@@ -1,0 +1,5 @@
+<launch>
+
+  <node name="player_node" pkg="turtlebot_gazebo" type="sm_player.py" output="screen"/>
+
+</launch>
