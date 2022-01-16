@@ -26,8 +26,6 @@ from std_msgs.msg import Bool
 from std_msgs.msg import String
 from gazebo_msgs.srv import DeleteModel, SpawnModel
 from geometry_msgs.msg import Pose, Point, Quaternion
-import os
-from pathlib import Path
 
 class ClienteMoveBase:
     def __init__(self):
@@ -80,9 +78,7 @@ class SpawnBall:
         self.delete_model = rospy.ServiceProxy("gazebo/delete_model", DeleteModel)
         self.spawn_model = rospy.ServiceProxy("gazebo/spawn_urdf_model", SpawnModel)
         
-        path = Path(os.getcwd())
-        
-        with open(str(path.parent.absolute()) + "/models/ball.urdf.xacro", "r") as f:
+        with open("/home/paula/tb2_ws/src/turtlebot2/turtlebot_simulator/turtlebot_gazebo/Turtlecup/models/ball.urdf.xacro", "r") as f:
             self.ball = f.read()
         self.x = 0
         self.y = 0 

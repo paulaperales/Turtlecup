@@ -7,7 +7,7 @@
   <!-- BEGIN ROBOT 1-->
   <group ns="VAR_BLUE">
     <param name="tf_prefix" value="VAR_BLUE_tf" />
-    <include file="$(find turtlebot_gazebo)/launch/one_robot.launch" >
+    <include file="$(find turtlebot_gazebo)/Turtlecup/launch/one_robot.launch" >
       <arg name="init_pose" value="-x 4.1836 -y 0 -z 0 -Y 3.14" />
       <arg name="robot_name"  value="VAR_BLUE" />
     </include>
@@ -16,7 +16,7 @@
   <!-- BEGIN ROBOT 2-->
   <group ns="GK_BLUE">
     <param name="tf_prefix" value="GK_BLUE_tf" />
-    <include file="$(find turtlebot_gazebo)/launch/one_robot.launch" >
+    <include file="$(find turtlebot_gazebo)/Turtlecup/launch/one_robot.launch" >
       <arg name="init_pose" value="-x 2.8 -y 0 -z 0 -Y 3.14" />
       <arg name="robot_name"  value="GK_BLUE" />
     </include>
@@ -26,7 +26,7 @@
     <!-- BEGIN ROBOT 3-->
   <group ns="GK_YELLOW">
     <param name="tf_prefix" value="GK_YELLOW_tf" />
-    <include file="$(find turtlebot_gazebo)/launch/one_robot.launch" >
+    <include file="$(find turtlebot_gazebo)/Turtlecup/launch/one_robot.launch" >
       <arg name="init_pose" value="-x -2.8 -y 0 -z 0 -Y 0" />
       <arg name="robot_name"  value="GK_YELLOW" />
     </include>
@@ -35,7 +35,7 @@
   <!-- BEGIN ROBOT 4-->
   <group ns="VAR_YELLOW">
     <param name="tf_prefix" value="VAR_YELLOW_tf" />
-    <include file="$(find turtlebot_gazebo)/launch/one_robot.launch" >
+    <include file="$(find turtlebot_gazebo)/Turtlecup/launch/one_robot.launch" >
       <arg name="init_pose" value="-x -4.1836 -y 0 -z 0 -Y 0" />
       <arg name="robot_name"  value="VAR_YELLOW" />
     </include>

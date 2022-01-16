@@ -1,6 +1,6 @@
 <launch>
   <arg name="gui"        default="true"/>
-  <arg name="world_file" default="$(find turtlebot_gazebo)/models/turtlecup.sdf"/>
+  <arg name="world_file" default="$(find turtlebot_gazebo)/Turtlecup/models/turtlecup.sdf"/>
 
 
   <arg name="base"       value="$(optenv TURTLEBOT_BASE kobuki)"/> <!-- create, roomba -->
@@ -21,7 +21,7 @@
     <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
   </include>
 
-  <include file="$(find turtlebot_gazebo)/launch/robots.launch"/>
+  <include file="$(find turtlebot_gazebo)/Turtlecup/launch/robots.launch"/>
 
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="30.0" />
