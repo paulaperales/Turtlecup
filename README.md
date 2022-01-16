@@ -49,4 +49,5 @@ source $HOME/tb2_ws/devel_isolated/setup.bash
 ```
 2. In the same command window execute `roslaunch turtlebot_gazebo turtlecup.launch`.
 3. Open a new command window and execute `roslaunch turtlebot_gazebo navigation.launch`
-4. Open a new command window and execute `roslaunch turtlebot_gazebo `
+4. Open a new command window and execute `roslaunch turtlebot_gazebo init_var_and_gk.launch`
+5. Open a new command window and execute `roslaunch turtlebot_gazebo init_player`
