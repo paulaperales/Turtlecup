@@ -1,6 +1,6 @@
 <launch>
   <arg name="gui"        default="true"/>
-  <arg name="world_file" default="$(find turtlebot_gazebo)/maps/turtlecup.sdf"/>
+  <arg name="world_file" default="$(find turtlebot_gazebo)/models/turtlecup.sdf"/>
 
 
   <arg name="base"       value="$(optenv TURTLEBOT_BASE kobuki)"/> <!-- create, roomba -->
