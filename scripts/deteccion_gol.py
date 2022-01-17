@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # nodo suscriptor de la camara
+#Figlio di putina
 import cv2
 import math
 import rospy
