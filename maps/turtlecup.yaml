@@ -1,4 +1,4 @@
-image: /home/paula/turtlecup.pgm
+image: ./turtlecup.pgm
 resolution: 0.050000
 origin: [-12.80000, -11.10000, 0.000000]
 negate: 0
