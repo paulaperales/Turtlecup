@@ -106,7 +106,7 @@ class SearchBall(smach.State):
                     giro.angular.z = -0.5
                 else:
                     giro.angular.z = 0.5
-            if self.average < self.range: # If the ball is clpse to the goal
+            if self.average < self.range: # If the ball is close to the goal
                 self.result = True
             else:
                 self.result = False
