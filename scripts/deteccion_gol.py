@@ -43,50 +43,41 @@ def callback(img):
     # Ball radius
     radio = 0
     
-    # Line moments to compute their centroid
+    # Line moments to compute its centroid
     mW = cv2.moments(endWhite)
     if mW['m00'] != 0:
         xW = mW['m10']/mW['m00']
         yW = mW['m01']/mW['m00']
 
-    # Cálculo del centroide en la imagen binaria
+    # Ball moments to compute its centroid
     m = cv2.moments(maskRed)
     if m['m00'] != 0:
         x = m['m10']/m['m00']
         y = m['m01']/m['m00']
 
-        
-        ret, thresh = cv2.threshold(maskRed, 127, 255, 0)
-        contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        # Compute ball area to find its radius        
+        _, thresh = cv2.threshold(maskRed, 127, 255, 0) 
+        contours,_ = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         if len(contours) > 0:
             area = cv2.contourArea(contours[0])
             radio = math.sqrt(area/math.pi)
-
-
-        cv2.circle(cv_img, (int(x),int(y+radio)), 5, 255, 5)
-    
+        
+        # If the bottom point of the ball overcomes the white line, it's gol
         if y+radio > yW:
             pub_goal.publish(Bool(True))
         else:
             pub_goal.publish(Bool(False))
 
-
-
-
-    # cv2.imshow("Image window", cv_img)
-    # cv2.imshow("Pelota", maskRed)
-    # cv2.imshow("Lineas", endWhite)
-    cv2.waitKey(3)
-
+# Arguments manager
 parser = argparse.ArgumentParser(description='Detect goal from VAR robots')
 parser.add_argument('-VAR_name', type=str, help='VAR name. Choose between VAR_BLUE and VAR_YELLOW')
 ros_args = rospy.myargv()
 args = parser.parse_args(ros_args[1:])
 
-# cv2.namedWindow('Camera', cv2.WINDOW_AUTOSIZE)
 bridge = CvBridge()
-rospy.init_node('camera_goal')                                                                      # Node initialization
-sub = rospy.Subscriber(ros_args[2]+'/camera/rgb/image_raw', Image, callback)                            # Subscriber node initialization
-pub_goal = rospy.Publisher('/goal', Bool, queue_size=5)
+rospy.init_node('camera_goal') # Node initialization
+sub = rospy.Subscriber(ros_args[2]+'/camera/rgb/image_raw', Image, callback) # Subscriber node initialization
+pub_goal = rospy.Publisher('/goal', Bool, queue_size=5) # Publisher node initialization
 
+# ROS Loop
 rospy.spin()     
