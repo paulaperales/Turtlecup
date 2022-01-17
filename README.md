@@ -47,9 +47,10 @@ chmod +x deteccion_gol.py sm_goalkeeper.py sm_player.py
 ```
 source $HOME/tb2_ws/devel_isolated/setup.bash
 ```
-2. In the same command window execute `roslaunch turtlebot_gazebo turtlecup.launch`.
+2. In the same command window execute ```roslaunch turtlebot_gazebo turtlecup.launch```.
 3. Open a new command window and execute `roslaunch turtlebot_gazebo navigation.launch`
 4. Open a new command window and execute `roslaunch turtlebot_gazebo init_var_and_gk.launch`
-5. Open a new command window and execute `roslaunch turtlebot_gazebo init_player.launch`
+5. Open file */scripts/sm_player.py* and change path in line 81 to the correct one. Just by changing the _/user_ section should be enough.
+6. Open a new command window and execute `roslaunch turtlebot_gazebo init_player.launch`
 
 The robot in the centre of the field will start looking for the ball and computing the trajectory. Meanwhile, the goalkeepers will be looking for the ball until it gets close enough. When the shoot is done, the goalkeepers will try to stop it. Whether if it finishes in goal or not, the execution ends after some time. It must be closed and executed again for another try.
