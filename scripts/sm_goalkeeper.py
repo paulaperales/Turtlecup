@@ -99,7 +99,6 @@ class SearchBall(smach.State):
                     giro.angular.z = -0.5
                 else:
                     giro.angular.z = 0.5
-            print(self.average)
             if self.average < self.range:
                 self.result = True
             else:
