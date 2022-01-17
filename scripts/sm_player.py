@@ -23,7 +23,7 @@ from actionlib_msgs.msg import GoalStatus
 from kobuki_msgs.msg import BumperEvent
 from std_msgs.msg import Bool
 from std_msgs.msg import String
-from gazebo_msgs.srv import DeleteModel, SpawnModel
+from gazebo_msgs.srv import SpawnModel
 from geometry_msgs.msg import Pose, Point, Quaternion
 
 # Ceate a class to move the robot to a desired Point
@@ -71,12 +71,9 @@ x = 0
 # Define class SpawnBall to place the ball on the field
 class SpawnBall:
     def __init__(self):
-        rospy.wait_for_service("gazebo/delete_model")
         rospy.wait_for_service("gazebo/spawn_urdf_model")
         print("Got it.")
         
-        # Remove the ball from the secene
-        self.delete_model = rospy.ServiceProxy("gazebo/delete_model", DeleteModel)
         # Spawn the ball in the scene
         self.spawn_model = rospy.ServiceProxy("gazebo/spawn_urdf_model", SpawnModel)
             
@@ -87,9 +84,6 @@ class SpawnBall:
             self.ball = f.read()
         self.x = 0
         self.y = 0 
-
-    def delete_ball(self):
-        self.delete_model("ball_description")
 
     def spawn_ball(self):
         # Calculate a random position to place the ball
