@@ -214,30 +214,21 @@ class Positions(smach.State):
         # El eje x del robot apunta directamente a la pelota;
         # Posición pelota respecto al robot
         pos_ball_robot = np.array([self.average, 0, 0-self.theta_robot])
-        print("POSICIÓN PELOTA RESPECTO AL ROBOT: ", pos_ball_robot)
 
         # Posición robot
         pos_robot_world = np.array([self.vector_odom.position.x, self.vector_odom.position.y, self.theta_robot])
-        print("POSICIÓN ROBOT RESPECTO AL MUNDO: ", pos_robot_world)
 
         # Matriz rotación eje Z
         mat_rot_z = np.array([[math.cos(self.theta_robot), -math.sin(self.theta_robot), 0],[math.sin(self.theta_robot), math.cos(self.theta_robot), 0],[0,0,1]])     
 
         # Posición pelota respecto al mundo
         pos_ball_world = np.dot(mat_rot_z,pos_ball_robot) + pos_robot_world
-        print("POSICIÓN PELOTA RESPECTO AL MUNDO: ", pos_ball_world)
 
         # Orientación pelota respecto al punto que representa la portería
         orientation_ball = math.atan2((self.goal_point_y - pos_ball_world[1]), (self.goal_point_x- pos_ball_world[0]))
-        print(math.degrees(orientation_ball))
         dist = 1.2 # Distancia que mantener entre el robot y la pelota
         # Posición a la que tiene que llegar el robot
         self.destino = [pos_ball_world[0] - dist*math.cos(orientation_ball), pos_ball_world[1] - dist*math.sin(orientation_ball), orientation_ball]
-        print("POSICIÓN A LA QUE TIENE QUE LLEGAR EL ROBOT: ", self.destino)
-        # if self.destino[2] < 0:
-        #     self.destino[2] = self.destino[2] + 2*math.pi
-        # print(self.destino[0], self.destino[1], math.degrees(self.destino[2]))
-
       
 
     def execute(self, userdata):
@@ -245,11 +236,9 @@ class Positions(smach.State):
             self.position = True
             self.compute_position()
         movement = Twist()
-        print("DESTINO", self.destino)
         self.result = self.move.moveTo(self.destino[0], self.destino[1], self.destino[2])
         q = [self.vector_odom.orientation.x, self.vector_odom.orientation.y, self.vector_odom.orientation.z, self.vector_odom.orientation.w] 
         theta_r = tf.transformations.euler_from_quaternion(q)[2]
-        print("ANGULO: ", math.degrees(self.destino[2]), "ANGULO ROBOT:", math.degrees(theta_r))
         while abs(self.destino[2] - theta_r) > 0.05:
             q = [self.vector_odom.orientation.x, self.vector_odom.orientation.y, self.vector_odom.orientation.z, self.vector_odom.orientation.w] 
             theta_r = tf.transformations.euler_from_quaternion(q)[2]
