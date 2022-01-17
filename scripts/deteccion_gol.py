@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# nodo suscriptor de la camara
 import cv2
 import math
 import rospy
@@ -10,40 +9,45 @@ from cv_bridge import CvBridge
 
 import argparse
 
-
-def callback(img):
+# Main function
+def callback(img): 
+    cv_img = bridge.imgmsg_to_cv2(img, desired_encoding='bgr8') # Needed to work with OpenCV
+    frameHSV = cv2.cvtColor(cv_img, cv2.COLOR_BGR2HSV) # RGB image to HSV
     
-    
-    cv_img = bridge.imgmsg_to_cv2(img, desired_encoding='bgr8')
-    frameHSV = cv2.cvtColor(cv_img, cv2.COLOR_BGR2HSV)
-
+    # Size of the image
     height = cv_img.shape[0]
     width = cv_img.shape[1]
 
-    rango_medio = 10
-
-    # Extracción de la pelota en binario
+    # Binary ball extraction
+    # Threshold to detection Red
     redBajo1 = np.array([0, 100, 20], np.uint8)
     redAlto1 = np.array([8, 255, 255], np.uint8)
-    redBajo2=np.array([175, 100, 20], np.uint8)
-    redAlto2=np.array([179, 255, 255], np.uint8)
+    redBajo2 = np.array([175, 100, 20], np.uint8)
+    redAlto2 = np.array([179, 255, 255], np.uint8)
     maskRed1 = cv2.inRange(frameHSV, redBajo1, redAlto1)
     maskRed2 = cv2.inRange(frameHSV, redBajo2, redAlto2)
     maskRed = cv2.add(maskRed1, maskRed2)
+    
+    # Improve detection 
     maskRed = cv2.dilate(maskRed,np.ones((5, 5), np.uint8))
 
+    # Binary field lines extraction
+    # Threshold to detection White
     white1 = np.array([135, 135, 135], np.uint8)
     white2 = np.array([138, 138, 138], np.uint8)
     whiteMask = cv2.inRange(cv_img, white1, white2)
+    
+    # Delete possible bad detections
     endWhite = cv2.erode(whiteMask,np.ones((3, 3), np.uint8))
-
+    
+    # Ball radius
     radio = 0
-
+    
+    # Line moments to compute their centroid
     mW = cv2.moments(endWhite)
     if mW['m00'] != 0:
         xW = mW['m10']/mW['m00']
         yW = mW['m01']/mW['m00']
-        cv2.circle(cv_img, (int(xW),int(yW)), 5, (0,0,255), 5)
 
     # Cálculo del centroide en la imagen binaria
     m = cv2.moments(maskRed)
